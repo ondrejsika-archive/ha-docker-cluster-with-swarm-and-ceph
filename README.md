@@ -151,3 +151,62 @@ Mount CephFS
 ```
 mount -t ceph :/ /cephfs -o name=admin
 ```
+
+## Setup Swarm
+
+Init Swarm on first node
+
+```
+docker swarm init
+```
+
+Generate join token for manager
+
+```
+docker swarm join-token manager
+```
+
+Call `docker swarm join ...` with master token on other nodes.
+
+
+## Setup Traefik
+
+Clone traefik-le repo
+
+```
+cd ~
+git clone https://github.com/ondrejsika/traefik-le.git
+cd traefik-le
+```
+
+### HTTP only
+
+If you have SSL termination before this cluster, you can use http only configuration of Traefik.
+
+Run Traefik HTTP only
+
+```
+docker swarm deploy -c docker-compose-swarm-http.yml traefik
+```
+
+### HTTPS using Let's Encrypt
+
+If you don't have proxy or dont want to terminate ssl on proxy, you can setup Traefik with SSL and automatic genetation of SSL certificates using Let's Encrypt.
+
+Run Traefik with Let's Encrypt
+
+```
+docker swarm deploy -c docker-compose-swarm.yml traefik
+```
+
+## Deploy Example Project
+
+Now, you can deploy demo site (from traefik-le examples). You have pointed DNS `*.swarm.sikademo.com` to this cluster.
+
+```
+# Go Hello World Example
+HOST=hello.swarm.sikademo.com docker stack deploy -c demo-sites/hello-world/docker-compose.yml hello
+
+# Nginx Example
+HOST=nginx.swarm.sikademo.com docker stack deploy -c demo-sites/nginx/docker-compose.yml nginx
+```
