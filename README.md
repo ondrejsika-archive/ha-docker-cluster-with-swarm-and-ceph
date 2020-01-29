@@ -210,3 +210,5 @@ HOST=hello.swarm.sikademo.com docker stack deploy -c demo-sites/hello-world/dock
 # Nginx Example
 HOST=nginx.swarm.sikademo.com docker stack deploy -c demo-sites/nginx/docker-compose.yml nginx
 ```
+
+Check out <http://hello.swarm.sikademo.com> and <http://nginx.swarm.sikademo.com>.
