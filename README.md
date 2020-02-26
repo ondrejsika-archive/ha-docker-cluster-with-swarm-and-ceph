@@ -186,7 +186,7 @@ If you have SSL termination before this cluster, you can use http only configura
 Run Traefik HTTP only
 
 ```
-docker swarm deploy -c docker-compose-swarm-http.yml traefik
+docker stack deploy -c docker-compose-swarm-http.yml traefik
 ```
 
 ### HTTPS using Let's Encrypt
@@ -196,7 +196,7 @@ If you don't have proxy or dont want to terminate ssl on proxy, you can setup Tr
 Run Traefik with Let's Encrypt
 
 ```
-docker swarm deploy -c docker-compose-swarm.yml traefik
+docker stack deploy -c docker-compose-swarm.yml traefik
 ```
 
 ## Deploy Example Project
