@@ -1,3 +1,5 @@
+> # ARCHIVED: Don't use Swarm, use Kubernetes
+
 # HA Docker Cluster with Swarm and Ceph
 
     2020 Ondrej Sika <ondrej@ondrejsika.com>
